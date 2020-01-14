@@ -3,6 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'youneverknow'
 # VK_SECRET_KEY = values.Value("vkkey")
+VK_SECRET_KEY = "foo"
 DEBUG = True
 
 ALLOWED_HOSTS = []

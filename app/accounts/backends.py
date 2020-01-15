@@ -19,6 +19,7 @@ class VkBackend:
         username = query_params.get("vk_user_id")
 
         if signature_valid:
+            print("VALIDATION OK")
             try:
                 user = User.objects.get(username=username)
             except User.DoesNotExist:
@@ -28,6 +29,7 @@ class VkBackend:
                 user.set_password(password)
                 user.save()
             return user
+        print("VALIDATION FAILED")
         return None
 
 

@@ -1,5 +1,5 @@
 # Migrations
-*/migrations/*
+**/migrations/*
 !*/migrations/__init__.py
 !__init__.py
 

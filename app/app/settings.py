@@ -3,12 +3,10 @@ from configurations import Configuration, values
 
 class Base(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    SECRET_KEY = 'youneverknow'
-    VK_SECRET_KEY = values.Value("vkkey")
+    SECRET_KEY = values.Value("secret_key")
+    VK_SECRET_KEY = values.Value("vk_key")
     DEBUG = True
-
     ALLOWED_HOSTS = []
-
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -16,14 +14,13 @@ class Base(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-
+        # third-party
         'corsheaders',
         'rest_framework',
-
+        # internal
         'accounts',
         'sheets',
     ]
-
     MIDDLEWARE = [
         'corsheaders.middleware.CorsMiddleware', # cors
         'django.middleware.security.SecurityMiddleware',
@@ -34,14 +31,11 @@ class Base(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
-
     ROOT_URLCONF = 'app.urls'
-
     AUTHENTICATION_BACKENDS = [
         'accounts.backends.VkBackend',
         'django.contrib.auth.backends.ModelBackend',
     ]
-
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -57,9 +51,7 @@ class Base(Configuration):
             },
         },
     ]
-
     WSGI_APPLICATION = 'app.wsgi.application'
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -70,23 +62,12 @@ class Base(Configuration):
             'PORT' : '5432',
         }
     }
-
-
     AUTH_PASSWORD_VALIDATORS = [
-        {
-            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-        },
-        {
-            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        },
-        {
-            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-        },
-        {
-            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-        },
+        {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+        {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+        {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+        {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
     ]
-
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',
@@ -97,40 +78,28 @@ class Base(Configuration):
             'accounts.backends.VkBackendREST',
         ]
     }
-
     CORS_ORIGIN_ALLOW_ALL = True
     # CORS_ORIGIN_WHITELIST = [
     #     'http://localhost:10888'
     # ]
-
     LANGUAGE_CODE = 'en-us'
-
     TIME_ZONE = 'UTC'
-
     USE_I18N = True
-
     USE_L10N = True
-
     USE_TZ = True
-
     STATIC_URL = '/static/'
-
     DEFAULT_USER_PASSWORD_LENGTH = 16
 
+
+
 class Dev(Base):
-
     DEBUG = True
-
     TEMPLATE_DEBUG = DEBUG
 
 
 
 class Prod(Base):
-
     DEBUG = False
-
-    TIME_ZONE = 'America/New_York'
-
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',

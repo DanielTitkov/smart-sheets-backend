@@ -13,7 +13,7 @@ class Sheet(models.Model):
         app_label = "sheets"
         
     def __str__(self):
-        return self.blueprint
+        return str(self.blueprint)
 
 
 
@@ -27,7 +27,7 @@ class Data(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return self.sheet
+        return str(self.sheet)
 
 
 
@@ -42,4 +42,4 @@ class Blueprint(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return self.title
+        return self.type

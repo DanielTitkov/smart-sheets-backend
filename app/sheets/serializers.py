@@ -6,7 +6,7 @@ from .models import Sheet, Blueprint, Data
 class SheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sheet
-        fields = ("__all__")
+        fields = ("id", "created", "updated", "blueprint")
         depth = 1
 
 

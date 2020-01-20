@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "be740aa7b658ef8afedd9ab170e1eacfe92f6abc63d8f9ce7f4965c3795c7aa6"
+            "sha256": "00fc74188526cd40ef3d2fd05fdc5be8e1aca485eb5298a125a9af82287ea8cf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -63,6 +63,13 @@
             "index": "pypi",
             "version": "==3.11.0"
         },
+        "djangorestframework-camel-case": {
+            "hashes": [
+                "sha256:9eba4a2f959e1e46b7d0f6136baf950552b2a4a695d4bb3cfb0c37be25294574"
+            ],
+            "index": "pypi",
+            "version": "==1.1.2"
+        },
         "psycopg2": {
             "hashes": [
                 "sha256:4212ca404c4445dc5746c0d68db27d2cbfb87b523fe233dc84ecd24062e35677",
@@ -108,10 +115,10 @@
         },
         "six": {
             "hashes": [
-                "sha256:1f1b7d42e254082a9db6279deae68afb421ceba6158efa6131de7b3003ee93fd",
-                "sha256:30f610279e8b2578cab6db20741130331735c781b56053c59c4076da27f06b66"
+                "sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a",
+                "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"
             ],
-            "version": "==1.13.0"
+            "version": "==1.14.0"
         },
         "sqlparse": {
             "hashes": [

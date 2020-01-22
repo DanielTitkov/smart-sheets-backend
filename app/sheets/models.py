@@ -13,8 +13,16 @@ class Sheet(models.Model):
         app_label = "sheets"
         
     def __str__(self):
-        return str(self.blueprint)
+        return f"<Sheet object id={self.id}>"
 
+    @property
+    def title(self):
+        title_element_data = self.data.filter(element_id=self.blueprint.title_element_id).first()
+        return title_element_data.content
+
+    @property
+    def type(self):
+        return self.blueprint.type
 
 
 class Data(models.Model):
@@ -28,7 +36,7 @@ class Data(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return f"<Data object for {str(self.sheet)} id {self.sheet.id} field {self.element_id}>" 
+        return f"<Data object id={self.id}>" 
 
 
 
@@ -43,4 +51,4 @@ class Blueprint(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return self.type
+        return f"<Blueprint object id={self.id}>" 

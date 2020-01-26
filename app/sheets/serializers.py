@@ -18,16 +18,32 @@ class DataSerializer(serializers.ModelSerializer):
 
 
 
+class DataNestedSerializer(serializers.Serializer):
+    data = serializers.DictField(
+        child=serializers.CharField(
+            allow_blank=True
+        ), 
+        allow_empty=True
+    )
+
+    def to_representation(self, instance): 
+        return { d.element_id : d.content for d in instance.all() }
+
+
+
 class SheetSerializer(serializers.ModelSerializer):
-    # data = DataSerializer(many=True, read_only=True)
-    data = serializers.SerializerMethodField("get_data")
+    # data = serializers.SerializerMethodField("get_data")
+    data = DataNestedSerializer()
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Sheet
-        fields = ("id", "created", "updated", "blueprint", "data")
         depth = 1
+        fields = ("id", "user", "created", "updated", "blueprint", "data")
+        extra_kwargs = {
+            'blueprint': {'read_only': True},
+        }
 
     def get_data(self, obj):
         data = obj.data.all()
-        # serializer = QuestionSerializer(questions, many=True)
         return { d.element_id : d.content for d in data }

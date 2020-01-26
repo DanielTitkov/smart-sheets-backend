@@ -19,15 +19,27 @@ class DataSerializer(serializers.ModelSerializer):
 
 
 class DataNestedSerializer(serializers.Serializer):
-    data = serializers.DictField(
+    class DataField(serializers.DictField):
+        def to_representation(self, instance): 
+            try:
+                objects = instance.all()
+            except:
+                return {}
+                return super().to_representation(instance)
+            print(instance, type(instance))
+            return { d.element_id : d.content for d in objects }
+
+        def to_internal_value(self, data):
+            return data
+
+    data = DataField(
         child=serializers.CharField(
             allow_blank=True
         ), 
         allow_empty=True
     )
 
-    def to_representation(self, instance): 
-        return { d.element_id : d.content for d in instance.all() }
+
 
 
 

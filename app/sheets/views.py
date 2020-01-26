@@ -34,14 +34,15 @@ class SheetList(APIView):
 
     def post(self, request, format=None):
         user = self.request.user
-        serializer = SheetSerializer(data=request.data) # request data
+        # data_serializer = DataNestedSerializer(data=request.data) # request data
+        sheet_serializer = SheetSerializer(data=request.data, context={'request': self.request})
         print(request.data)
-        if serializer.is_valid():
-            data = serializer.data.get("data") # field "data" contents
+        if sheet_serializer.is_valid():
+            data = sheet_serializer.data # field "data" contents
             print("VALID", data)
             return Response({})
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        print(sheet_serializer.errors)
+        return Response(sheet_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
     # def post(self, request, format=None):

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Sheet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     blueprint = models.ForeignKey("sheets.Blueprint", on_delete=models.CASCADE, related_name="blueprint")
+    deleted = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -18,7 +19,7 @@ class Sheet(models.Model):
     @property
     def title(self):
         title_element_data = self.data.filter(element_id=self.blueprint.title_element_id).first()
-        return title_element_data.content
+        return title_element_data.content if title_element_data else "<NO DATA>"
 
     @property
     def type(self):

@@ -4,7 +4,7 @@ from rest_framework import routers
 from .views import BlueprintView, DataView, SheetView
 
 router = routers.DefaultRouter()
-router.register(r'sheets', SheetView)
+router.register(r'sheets', SheetView, basename="sheet")
 router.register(r'blueprints', BlueprintView)
 router.register(r'datas', DataView)
 

@@ -20,5 +20,8 @@ class DataView(viewsets.ModelViewSet):
 
 
 class SheetView(viewsets.ModelViewSet):
-    queryset = Sheet.objects.all()
     serializer_class = SheetSerializer
+    
+    def get_queryset(self):
+        user = self.request.user
+        return Sheet.objects.filter(deleted=False, user=user).all()

@@ -9,6 +9,7 @@ class SheetAdmin(admin.ModelAdmin):
         'title',
         'type',
         'user', 
+        'deleted',
         'created',
         'updated',
     )

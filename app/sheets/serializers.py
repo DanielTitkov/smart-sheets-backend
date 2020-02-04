@@ -33,10 +33,9 @@ class SheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sheet
         depth = 1
-        fields = ["id", "user", "created", "updated", "blueprint", "blueprint_id", "data"]
+        fields = ["id", "user", "created", "updated", "deleted", "blueprint", "blueprint_id", "data"]
 
     def create(self, validated_data):
-        print("CREATE", validated_data)
         data_units = validated_data.pop('data')
         sheet = Sheet.objects.create(**validated_data)
         for data_unit in data_units:
@@ -44,7 +43,6 @@ class SheetSerializer(serializers.ModelSerializer):
         return sheet
 
     def update(self, instance, validated_data):
-        print("UPDATE", validated_data)
         data_units = validated_data.pop('data')
         instance=super().update(instance,validated_data)
         for data_unit in data_units: # this is very slow, maybe use bulk_update or something

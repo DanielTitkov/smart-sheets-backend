@@ -21,7 +21,7 @@ class DataView(viewsets.ModelViewSet):
 
 class SheetView(viewsets.ModelViewSet):
     serializer_class = SheetSerializer
-    
+
     def get_queryset(self):
         user = self.request.user
-        return Sheet.objects.filter(deleted=False, user=user).all()
+        return Sheet.objects.filter(deleted=False, user=user).order_by("-updated").all()

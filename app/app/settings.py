@@ -55,11 +55,11 @@ class Base(Configuration):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'pguser',
-            'USER' : 'pguser',
-            'PASSWORD' : 'pguser',
-            'HOST' : 'localhost',
-            'PORT' : '5432',
+            'NAME': values.Value("database_name", environ_name="DATABASE_NAME"),
+            'USER' : values.Value("database_user", environ_name="DATABASE_USER"),
+            'PASSWORD' : values.Value("database_password", environ_name="DATABASE_PASSWORD"),
+            'HOST' : values.Value("localhost", environ_name="DATABASE_HOST"),
+            'PORT' : values.Value("5432", environ_name="DATABASE_PORT"),
         }
     }
     AUTH_PASSWORD_VALIDATORS = [

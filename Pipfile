@@ -15,6 +15,7 @@ django-cors-headers = "*"
 pyyaml = "*"
 django-dotenv = "*"
 djangorestframework-camel-case = "*"
+awsebcli = "*"
 
 [requires]
 python_version = "3.7"

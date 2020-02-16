@@ -10,12 +10,12 @@ mypy = "*"
 django = "*"
 djangorestframework = "*"
 django-configurations = "*"
-psycopg2 = "*"
 django-cors-headers = "*"
 pyyaml = "*"
 django-dotenv = "*"
 djangorestframework-camel-case = "*"
 awsebcli = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"

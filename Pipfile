@@ -16,6 +16,7 @@ django-dotenv = "*"
 djangorestframework-camel-case = "*"
 awsebcli = "*"
 psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

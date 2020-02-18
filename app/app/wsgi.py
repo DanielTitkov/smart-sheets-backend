@@ -13,4 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
+print("BEFORE APP")
 application = get_wsgi_application()
+print("AFTER APP")

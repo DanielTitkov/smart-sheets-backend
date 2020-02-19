@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: smart-sheets-backend-test
+    environment: smart-sheets-backend-dev
     group_suffix: null
 global:
   application_name: smart-sheets-backend

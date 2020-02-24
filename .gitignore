@@ -18,3 +18,6 @@ deployments/credentials.csv
 
 # django static
 app/static/
+
+# gcloud proxy
+cloud_sql_proxy

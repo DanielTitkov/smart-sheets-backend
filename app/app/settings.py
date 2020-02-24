@@ -106,9 +106,24 @@ class Base(Configuration):
     DEFAULT_USER_PASSWORD_LENGTH = 16
 
 
+
 class Dev(Base):
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
+
+
+
+class Local(Dev):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': '127.0.0.1',
+            'PORT': values.Value("5432", environ_name="DATABASE_PORT"),
+            # 'USER': 'gapp',
+            # 'PASSWORD': '123123',
+            # 'NAME': 'gapp',
+        }
+    }
 
 
 
@@ -119,6 +134,15 @@ class Deploy(Base):
     ALLOWED_HOSTS = [
         'smart-sheets-backend.appspot.com',
     ]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': '/cloudsql/smart-sheets-backend:europe-west3:postgres1',
+            # 'USER': 'gapp',
+            # 'PASSWORD': '123123',
+            # 'NAME': 'gapp',
+        }
+    }
 
 
 

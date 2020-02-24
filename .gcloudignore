@@ -14,3 +14,6 @@ __pycache__/
 # Pipfile
 Pipfile
 Pipfile.lock
+
+# gcloud proxy
+cloud_sql_proxy

@@ -1,0 +1,13 @@
+runtime: python37
+handlers:
+- url: /static
+  static_dir: app/static/
+- url: /.*
+  script: auto
+entrypoint: gunicorn -b :$PORT app.app.wsgi:application
+env_variables:
+  DJANGO_SETTINGS_MODULE: "app.app.settings"
+  DJANGO_CONFIGURATION: "Deploy"
+  DJANGO_GC_DATABASE_NAME: ${DJANGO_GC_DATABASE_NAME}
+  DJANGO_GC_DATABASE_USER: ${DJANGO_GC_DATABASE_USER}
+  DJANGO_GC_DATABASE_PASSWORD: ${DJANGO_GC_DATABASE_PASSWORD}

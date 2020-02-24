@@ -1,23 +1,23 @@
-# Migrations
+# migrations
 **/migrations/*
 !*/migrations/__init__.py
 !__init__.py
 
-### Django ###
+# django
 *.log
 *.pot
 *.pyc
 __pycache__/
-
-### ENV
-.env
-deployments/credentials.csv
-
-### mypy
-.mypy_cache
-
-# django static
 app/static/
+
+# env
+.env
+
+# mypy
+.mypy_cache
 
 # gcloud proxy
 cloud_sql_proxy
+
+# gcloud true config
+app.yaml

@@ -138,9 +138,9 @@ class Deploy(Base):
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'HOST': '/cloudsql/smart-sheets-backend:europe-west3:postgres1',
-            # 'USER': 'gapp',
-            # 'PASSWORD': '123123',
-            # 'NAME': 'gapp',
+            'USER': values.Value("database_user", environ_name="GC_DATABASE_USER"),
+            'NAME': values.Value("database_user", environ_name="GC_DATABASE_NAME"),
+            'PASSWORD' : values.Value("database_password", environ_name="GC_DATABASE_PASSWORD"),
         }
     }
 

@@ -1,11 +1,16 @@
 import os
 from configurations import Configuration, values
+import sys 
+
+# adding app folder to python path
+# otherwise gunicorn would not be able to find app.accounts etc
+# and changing import paths manually is not that entertaining
+sys.path = [os.path.dirname(os.path.dirname(os.path.abspath(__file__)))] + sys.path 
 
 class Base(Configuration):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     SECRET_KEY = values.Value("secret_key")
     VK_SECRET_KEY = values.Value("vk_key")
-    DEBUG = True
     ALLOWED_HOSTS = []
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -97,8 +102,8 @@ class Base(Configuration):
     USE_L10N = True
     USE_TZ = True
     STATIC_URL = '/static/'
+    STATIC_ROOT = 'static'
     DEFAULT_USER_PASSWORD_LENGTH = 16
-
 
 
 class Dev(Base):
@@ -107,7 +112,17 @@ class Dev(Base):
 
 
 
-class Prod(Base):
+class Deploy(Base):
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
+    ROOT_URLCONF = "app.app.urls"
+    ALLOWED_HOSTS = [
+        'smart-sheets-backend.appspot.com',
+    ]
+
+
+
+class Prod(Deploy):
     DEBUG = False
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [

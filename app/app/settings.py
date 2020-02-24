@@ -119,9 +119,9 @@ class Local(Dev):
             'ENGINE': 'django.db.backends.postgresql',
             'HOST': '127.0.0.1',
             'PORT': values.Value("5432", environ_name="DATABASE_PORT"),
-            # 'USER': 'gapp',
-            # 'PASSWORD': '123123',
-            # 'NAME': 'gapp',
+            'USER': values.Value("database_user", environ_name="GC_DATABASE_USER"),
+            'NAME': values.Value("database_user", environ_name="GC_DATABASE_NAME"),
+            'PASSWORD' : values.Value("database_password", environ_name="GC_DATABASE_PASSWORD"),
         }
     }
 

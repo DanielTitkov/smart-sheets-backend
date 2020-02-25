@@ -61,3 +61,6 @@ gcrun:
 .PHONY: gcmigrate
 gcmigrate:
 	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) python manage.py makemigrations && $(GC_LOCAL_ENV) python manage.py migrate
+
+app/.env:
+	touch $@

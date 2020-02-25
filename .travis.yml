@@ -16,4 +16,3 @@ deploy:
   provider: gae
   keyfile: client-secret.json
   project: smart-sheets-backend
-

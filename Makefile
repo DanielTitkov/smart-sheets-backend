@@ -11,10 +11,6 @@ CFG_COMPILE_IGNORE := PORT='$$PORT'
 include $(PROJECT_ROOT)/.env
 export
 
-.PHONY: pipenv
-pipenv:
-	pipenv shell
-
 .PHONY: collectstatic
 collectstatic:
 	cd $(PROJECT_ROOT) && python manage.py collectstatic --clear --no-input
@@ -53,6 +49,10 @@ run: devdbup
 .PHONY: migrate
 migrate: devdbup
 	cd $(PROJECT_ROOT) && python manage.py makemigrations && python manage.py migrate 
+
+.PHONY: test 
+test: 
+	echo TESTING
 
 .PHONY: gcrun
 gcrun: 

@@ -23,8 +23,13 @@ freeze:
 compilecfg:
 	$(CFG_COMPILE_IGNORE) envsubst < ./app.tml.yaml > app.yaml
 
+.PHONY: predeploy
+predeploy: freeze collectstatic compilecfg
+	env
+	cat app.yaml
+
 .PHONY: deploy
-deploy: freeze collectstatic compilecfg
+deploy: predeploy
 	gcloud app deploy --quiet
 	gcloud app browse
 	rm -f app.yaml 

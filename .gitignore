@@ -13,6 +13,9 @@ app/static/
 # env
 .env
 
+# google service account
+client-secret.json
+
 # mypy
 .mypy_cache
 

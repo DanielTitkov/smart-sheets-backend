@@ -1,11 +1,19 @@
 language: python
 python:
-  - "3.7"
-
+- '3.7'
+before_install:
+- openssl aes-256-cbc -K $encrypted_ff07a560d5d1_key -iv $encrypted_ff07a560d5d1_iv
+  -in client-secret.json.enc -out client-secret.json -d
 install:
-  - pip install pipenv
-  - pipenv install --dev
-  - make freeze
-
+- pip install pipenv
+- pipenv install --dev
+- make freeze
 script:
-  - make test
+- make test
+before_deploy:
+- make predeploy
+deploy:
+  provider: gae
+  keyfile: client-secret.json
+  project: smart-sheets-backend
+

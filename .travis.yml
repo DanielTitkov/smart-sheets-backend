@@ -13,6 +13,7 @@ script:
 before_deploy:
 - make predeploy
 deploy:
+  skip_cleanup: true
   provider: gae
   keyfile: client-secret.json
   project: smart-sheets-backend

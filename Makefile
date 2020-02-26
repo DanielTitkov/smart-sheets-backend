@@ -28,6 +28,12 @@ predeploy: freeze collectstatic compilecfg
 	env
 	cat app.yaml
 
+.PHONY: predeploynofreeze
+predeploynofreeze: collectstatic compilecfg
+	env 
+	cat app.yaml
+	cat requirements.txt
+
 .PHONY: deploy
 deploy: predeploy
 	gcloud app deploy --quiet

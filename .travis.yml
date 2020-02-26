@@ -7,11 +7,10 @@ before_install:
 install:
 - pip install pipenv
 - pipenv install --dev
-- make freeze
 script:
 - make test
 before_deploy:
-- make predeploy
+- make predeploynofreeze
 deploy:
   skip_cleanup: true
   provider: gae

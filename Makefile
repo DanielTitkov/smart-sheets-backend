@@ -25,14 +25,11 @@ compilecfg:
 
 .PHONY: predeploy
 predeploy: freeze collectstatic compilecfg
-	env
-	cat app.yaml
+	echo done predeploy
 
 .PHONY: predeploynofreeze
 predeploynofreeze: collectstatic compilecfg
-	env 
-	cat app.yaml
-	cat requirements.txt
+	echo done predeploynofreeze
 
 .PHONY: deploy
 deploy: predeploy

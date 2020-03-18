@@ -13,7 +13,7 @@ export
 
 .PHONY: collectstatic
 collectstatic:
-	cd $(PROJECT_ROOT) && python manage.py collectstatic --clear --no-input
+	cd $(PROJECT_ROOT) && pipenv run python manage.py collectstatic --clear --no-input
 
 .PHONY: freeze
 freeze: 
@@ -52,11 +52,11 @@ devdbup:
 
 .PHONY: run
 run: devdbup
-	cd $(PROJECT_ROOT) && python manage.py runserver
+	cd $(PROJECT_ROOT) && pipenv run python manage.py runserver
 
 .PHONY: migrate
 migrate: devdbup
-	cd $(PROJECT_ROOT) && python manage.py makemigrations && python manage.py migrate 
+	cd $(PROJECT_ROOT) && pipenv run python manage.py makemigrations && python manage.py migrate 
 
 .PHONY: test 
 test: 
@@ -64,11 +64,11 @@ test:
 
 .PHONY: gcrun
 gcrun: 
-	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) python manage.py runserver
+	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py runserver
 
 .PHONY: gcmigrate
 gcmigrate:
-	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) python manage.py makemigrations && $(GC_LOCAL_ENV) python manage.py migrate
+	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py makemigrations && $(GC_LOCAL_ENV) python manage.py migrate
 
 app/.env:
 	touch $@

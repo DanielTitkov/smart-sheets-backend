@@ -17,3 +17,6 @@ Pipfile.lock
 
 # gcloud proxy
 cloud_sql_proxy
+
+# data dump
+dump.json

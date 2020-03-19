@@ -24,3 +24,6 @@ cloud_sql_proxy
 
 # gcloud true config
 app.yaml
+
+# data dump
+dump.json

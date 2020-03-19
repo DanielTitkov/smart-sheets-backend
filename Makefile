@@ -7,6 +7,7 @@ GC_PROXY := cloud_sql_proxy
 GC_PROXY_URL := https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64
 GC_LOCAL_ENV := DJANGO_CONFIGURATION=Local DJANGO_DATABASE_PORT=$(PROXY_PORT)
 CFG_COMPILE_IGNORE := PORT='$$PORT'
+DUMP_FILE_NAME := dump
 
 include $(PROJECT_ROOT)/.env
 export
@@ -49,6 +50,14 @@ runproxy: getproxy
 .PHONY: devdbup
 devdbup:
 	cd deployments/dev && docker-compose up -d 
+
+.PHONY: dump
+dump:
+	cd $(PROJECT_ROOT) && pipenv run python manage.py dumpdata --indent 4 > ../$(DUMP_FILE_NAME).json
+
+.PHONY: load
+load:
+	cd $(PROJECT_ROOT) && pipenv run python manage.py loaddata ../$(DUMP_FILE_NAME).json
 
 .PHONY: run
 run: devdbup

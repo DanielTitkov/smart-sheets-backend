@@ -79,5 +79,9 @@ gcrun:
 gcmigrate:
 	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py makemigrations && $(GC_LOCAL_ENV) python manage.py migrate
 
+.PHONY: gcsu
+gcsu:
+	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py createsuperuser
+
 app/.env:
 	touch $@

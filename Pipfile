@@ -17,6 +17,7 @@ djangorestframework-camel-case = "*"
 awsebcli = "*"
 psycopg2 = "*"
 gunicorn = "*"
+django-admin-json-editor = "*"
 
 [requires]
 python_version = "3.7"

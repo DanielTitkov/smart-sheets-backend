@@ -22,6 +22,7 @@ class Base(Configuration):
         # third-party
         'corsheaders',
         'rest_framework',
+        'django_admin_json_editor',
         # internal
         'accounts',
         'sheets',

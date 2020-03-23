@@ -43,7 +43,8 @@ class Data(models.Model):
 
 class Blueprint(models.Model):
     type = models.CharField(max_length=500)
-    desc = models.CharField(max_length=2000, blank=True)
+    desc = models.TextField(blank=True)
+    guide = models.TextField(blank=True)
     image_url = models.CharField(max_length=500, blank=True)
     title_element_id = models.IntegerField()
     structure = JSONField(default=dict)

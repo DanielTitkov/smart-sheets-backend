@@ -42,6 +42,7 @@ class Base(Configuration):
         'accounts.backends.VkBackend',
         'django.contrib.auth.backends.ModelBackend',
     ]
+    USE_HASH_AS_USERNAME = True
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',

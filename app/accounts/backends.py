@@ -6,6 +6,7 @@ from collections import OrderedDict
 from hashlib import sha256
 from hmac import HMAC
 from urllib.parse import urlparse, parse_qsl, urlencode
+from hashlib import md5
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -16,7 +17,12 @@ class VkBackend:
     def authenticate(self, request, *args, **kwargs):
         query_params = self.parse_vk_signature(request.get_full_path())
         signature_valid = self.validate_vk_signature(query=query_params, secret=settings.VK_SECRET_KEY)
-        username = query_params.get("vk_user_id")
+        vk_user_id = query_params.get("vk_user_id")
+
+        if settings.USE_HASH_AS_USERNAME: 
+            username = md5(vk_user_id.encode(encoding='utf-8')).hexdigest()
+        else: 
+            username = vk_user_id
 
         if signature_valid:
             try:

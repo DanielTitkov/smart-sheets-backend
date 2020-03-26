@@ -129,7 +129,7 @@ class Local(Dev):
 
 
 class Deploy(Base):
-    DEBUG = True
+    DEBUG = False
     TEMPLATE_DEBUG = DEBUG
     ROOT_URLCONF = "app.app.urls"
     ALLOWED_HOSTS = [
@@ -148,7 +148,6 @@ class Deploy(Base):
 
 
 class Prod(Deploy):
-    DEBUG = False
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',

@@ -29,7 +29,7 @@ class Sheet(models.Model):
 class Data(models.Model):
     sheet = models.ForeignKey("sheets.Sheet", on_delete=models.CASCADE, related_name="data")
     element_id = models.IntegerField()
-    content = models.TextField(blank=True)
+    content = JSONField(default=dict, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

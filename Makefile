@@ -65,7 +65,7 @@ run: devdbup
 
 .PHONY: migrate
 migrate: devdbup
-	cd $(PROJECT_ROOT) && pipenv run python manage.py makemigrations && python manage.py migrate 
+	cd $(PROJECT_ROOT) && pipenv run python manage.py makemigrations && pipenv run python manage.py migrate 
 
 .PHONY: test 
 test: 
@@ -77,7 +77,7 @@ gcrun:
 
 .PHONY: gcmigrate
 gcmigrate:
-	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py makemigrations && $(GC_LOCAL_ENV) python manage.py migrate
+	cd $(PROJECT_ROOT) && $(GC_LOCAL_ENV) pipenv run python manage.py makemigrations && $(GC_LOCAL_ENV) pipenv run python manage.py migrate
 
 .PHONY: gcsu
 gcsu:

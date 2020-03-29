@@ -32,7 +32,7 @@ BLUEPRINT_SCHEMA = {
                     "desc": {
                         'title': 'desc',
                         'type': 'string',
-                        'format': 'text',
+                        'format': 'textarea',
                     },
                     "title": {
                         'title': 'title',

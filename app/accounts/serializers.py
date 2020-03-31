@@ -10,3 +10,12 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ("__all__")
         depth = 1
+
+
+class SettingSerializer(serializers.Serializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Profile
+        fields = ("__all__")
+        depth = 0

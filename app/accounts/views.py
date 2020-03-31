@@ -1,11 +1,19 @@
 from rest_framework import viewsets
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Settings
+from .serializers import ProfileSerializer, SettingSerializer
 
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+
+class SettingsView(viewsets.ModelViewSet):
+    serializer_class = SettingSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Settings.objects.filter(user=user).first()
 
 
 

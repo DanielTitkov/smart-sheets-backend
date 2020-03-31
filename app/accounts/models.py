@@ -25,3 +25,16 @@ class Profile(models.Model):
             if getattr(obj, k, None) != v:
                 return True
         return False
+
+
+class Settings(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    encrypt = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        app_label = "accounts"
+
+    def __str__(self):
+        return "{} settings".format(self.user)

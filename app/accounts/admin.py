@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile
+from .models import Profile, Settings
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
@@ -18,4 +18,21 @@ class ProfileAdmin(admin.ModelAdmin):
         'country',
     )
 
+
+
+class SettingsAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__',
+        'user',
+        'encrypt',
+        'created',
+        'updated',
+    )
+    list_filter = (
+        "encrypt",
+    ) 
+
+
+
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Settings, SettingsAdmin)

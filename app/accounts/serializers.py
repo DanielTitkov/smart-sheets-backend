@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, Settings
 
 
 
@@ -12,10 +12,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         depth = 1
 
 
-class SettingSerializer(serializers.Serializer):
+class SettingSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
-        model = Profile
+        model = Settings
         fields = ("__all__")
-        depth = 0
+        depth = 1

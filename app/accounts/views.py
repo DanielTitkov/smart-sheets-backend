@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from django.conf import settings
 from .models import Profile, Settings
 from .serializers import ProfileSerializer, SettingSerializer
 
@@ -8,13 +9,15 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class SettingsView(viewsets.ModelViewSet):
-    serializer_class = SettingSerializer
+class SettingsList(APIView):
 
-    def get_queryset(self):
+    def get(self, request, format=None):
         user = self.request.user
-        return Settings.objects.filter(user=user).first()
-
+        user_settings = Settings.objects.filter(user=user).first()
+        if not user_settings:
+            user_settings = Settings.objects.create(user=user, **settings.USER_DEFAULT_SETTINGS) # create with default values if not exist
+        serializer = SettingSerializer(user_settings)
+        return Response(serializer.data)
 
 
 class ProfileList(APIView):

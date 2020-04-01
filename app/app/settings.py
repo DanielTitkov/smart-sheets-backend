@@ -43,6 +43,9 @@ class Base(Configuration):
         'django.contrib.auth.backends.ModelBackend',
     ]
     USE_HASH_AS_USERNAME = True
+    USER_DEFAULT_SETTINGS = {
+        "encrypt": False,
+    }
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',

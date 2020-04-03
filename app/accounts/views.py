@@ -19,6 +19,16 @@ class SettingsList(APIView):
         serializer = SettingSerializer(user_settings)
         return Response(serializer.data)
 
+    def post(self, request, format=None):
+        user = self.request.user
+        serializer = SettingSerializer(data=request.data, context={'request': self.request})
+        if serializer.is_valid(): 
+            serializer.instance = Settings.objects.filter(user=user).first()
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class ProfileList(APIView):
 

@@ -30,6 +30,7 @@ class Profile(models.Model):
 class Settings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     encrypt = models.BooleanField(default=False)
+    encrypted_key = models.CharField(max_length=200, null=True, default=None, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

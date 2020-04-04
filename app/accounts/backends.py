@@ -18,6 +18,8 @@ class VkBackend:
         query_params = self.parse_vk_signature(request.get_full_path())
         signature_valid = self.validate_vk_signature(query=query_params, secret=settings.VK_SECRET_KEY)
         vk_user_id = query_params.get("vk_user_id")
+        if not vk_user_id:
+            return None # for admin auth
 
         if settings.USE_HASH_AS_USERNAME: 
             username = md5(vk_user_id.encode(encoding='utf-8')).hexdigest()

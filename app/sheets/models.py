@@ -45,6 +45,7 @@ class Blueprint(models.Model):
     type = models.CharField(max_length=500)
     desc = models.TextField(blank=True)
     guide = models.TextField(blank=True)
+    example = models.TextField(blank=True)
     image_url = models.CharField(max_length=500, blank=True)
     title_element_id = models.IntegerField()
     structure = JSONField(default=dict)

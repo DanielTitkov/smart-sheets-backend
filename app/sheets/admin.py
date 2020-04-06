@@ -31,12 +31,13 @@ class DataAdmin(admin.ModelAdmin):
     )
 
 
-class BlueprintAdmin(admin.ModelAdmin):
-    list_display = (
-        '__str__',
-        'type',
-        'desc',
-    )
+# class BlueprintAdmin(admin.ModelAdmin):
+#     list_display = (
+#         '__str__',
+#         'type',
+#         'desc',
+#         'published',
+#     )
 
 
 class BlueprintAdminForm(forms.ModelForm):
@@ -56,6 +57,7 @@ class BlueprintAdmin(admin.ModelAdmin):
     list_display = (
         '__str__',
         'type',
+        'published',
         'desc',
     )
     form = BlueprintAdminForm

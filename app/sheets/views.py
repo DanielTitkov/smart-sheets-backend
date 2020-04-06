@@ -8,7 +8,7 @@ from .serializers import SheetSerializer, BlueprintSerializer, DataSerializer
 
 
 class BlueprintView(viewsets.ModelViewSet):
-    queryset = Blueprint.objects.all()
+    queryset = Blueprint.objects.filter(published=True).all()
     serializer_class = BlueprintSerializer
 
 

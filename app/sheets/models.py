@@ -48,6 +48,7 @@ class Blueprint(models.Model):
     example = models.TextField(blank=True)
     image_url = models.CharField(max_length=500, blank=True)
     title_element_id = models.IntegerField()
+    published = models.BooleanField(default=False)
     structure = JSONField(default=dict)
 
     class Meta:

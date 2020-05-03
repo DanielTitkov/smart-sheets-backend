@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Profile, Settings
 
+
+
 class ProfileAdmin(admin.ModelAdmin):
     list_display = (
         '__str__',

@@ -3,13 +3,19 @@ from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import Sheet, Blueprint, Data
-from .serializers import SheetSerializer, BlueprintSerializer, DataSerializer
+from .models import Sheet, Blueprint, Data, Rubric
+from .serializers import SheetSerializer, BlueprintSerializer, DataSerializer, RubricSerializer
 
 
 class BlueprintView(viewsets.ModelViewSet):
     queryset = Blueprint.objects.filter(published=True).all()
     serializer_class = BlueprintSerializer
+
+
+
+class RubricView(viewsets.ModelViewSet):
+    queryset = Rubric.objects.filter(published=True).all()
+    serializer_class = RubricSerializer
 
 
 

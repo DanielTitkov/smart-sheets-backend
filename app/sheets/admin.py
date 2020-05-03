@@ -3,8 +3,24 @@ from django import forms
 
 from django_admin_json_editor import JSONEditorWidget
 
-from .models import Sheet, Data, Blueprint
+from .models import Sheet, Data, Blueprint, Rubric
 from .schemas import BLUEPRINT_SCHEMA
+
+
+class RubricAdmin(admin.ModelAdmin):
+    list_display = (
+        '__str__',
+        'title',
+        'desc',
+        'published',
+        'created',
+        'updated',
+    )
+    search_fields = (
+        'title',
+    )
+
+
 
 class SheetAdmin(admin.ModelAdmin):
     list_display = (
@@ -21,6 +37,7 @@ class SheetAdmin(admin.ModelAdmin):
     )
 
 
+
 class DataAdmin(admin.ModelAdmin):
     list_display = (
         '__str__',
@@ -30,14 +47,6 @@ class DataAdmin(admin.ModelAdmin):
         'updated',
     )
 
-
-# class BlueprintAdmin(admin.ModelAdmin):
-#     list_display = (
-#         '__str__',
-#         'type',
-#         'desc',
-#         'published',
-#     )
 
 
 class BlueprintAdminForm(forms.ModelForm):
@@ -51,6 +60,9 @@ class BlueprintAdminForm(forms.ModelForm):
 
 admin.site.register(Sheet, SheetAdmin)
 admin.site.register(Data, DataAdmin)
+admin.site.register(Rubric, RubricAdmin)
+
+
 
 @admin.register(Blueprint)
 class BlueprintAdmin(admin.ModelAdmin):

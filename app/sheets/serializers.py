@@ -1,11 +1,19 @@
 from rest_framework import serializers
-from .models import Sheet, Blueprint, Data
+from .models import Sheet, Blueprint, Data, Rubric
 
 
 
 class BlueprintSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blueprint
+        fields = ("__all__")
+        depth = 1
+
+
+
+class RubricSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rubric
         fields = ("__all__")
         depth = 1
 

@@ -3,6 +3,22 @@ from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
 
 
+class Rubric(models.Model):
+    title = models.CharField(max_length=500)
+    desc = models.TextField(blank=True)
+    image_url = models.CharField(max_length=500, blank=True)
+    published = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        app_label = "sheets"
+
+    def __str__(self):
+        return f"<Rubric object id={self.id}>" 
+
+
+
 class Sheet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     blueprint = models.ForeignKey("sheets.Blueprint", on_delete=models.CASCADE, related_name="blueprint")
@@ -42,6 +58,7 @@ class Data(models.Model):
 
 
 class Blueprint(models.Model):
+    rubric = models.ForeignKey("sheets.Rubric", on_delete=models.PROTECT, blank=True, null=True)
     type = models.CharField(max_length=500)
     desc = models.TextField(blank=True)
     guide = models.TextField(blank=True)

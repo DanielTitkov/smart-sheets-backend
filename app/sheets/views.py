@@ -8,9 +8,16 @@ from .serializers import SheetSerializer, BlueprintSerializer, DataSerializer, R
 
 
 class BlueprintView(viewsets.ModelViewSet):
-    queryset = Blueprint.objects.filter(published=True).all()
     serializer_class = BlueprintSerializer
 
+    def get_queryset(self):
+        queryset = Blueprint.objects.filter(published=True).all()
+
+        rubric_id = self.request.query_params.get('rubric', None)
+        if rubric_id is not None:
+            queryset = Blueprint.objects.filter(published=True, rubric_id=rubric_id).all()
+
+        return queryset
 
 
 class RubricView(viewsets.ModelViewSet):

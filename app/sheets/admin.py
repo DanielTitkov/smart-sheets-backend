@@ -59,6 +59,13 @@ class BlueprintAdminForm(forms.ModelForm):
             'structure': JSONEditorWidget(BLUEPRINT_SCHEMA, collapsed=False, sceditor=True),
         }
 
+    def clean_rubric(self):
+        rubric = self.cleaned_data['rubric']
+        if rubric.has_children:
+            raise forms.ValidationError('this rubric has children')
+        return rubric
+
+
 
 admin.site.register(Sheet, SheetAdmin)
 admin.site.register(Data, DataAdmin)

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Rubric(models.Model):
+    parent = models.ForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
     title = models.CharField(max_length=500)
     desc = models.TextField(blank=True)
     image_url = models.CharField(max_length=500, blank=True)
@@ -15,7 +16,7 @@ class Rubric(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return f"<Rubric object id={self.id}>" 
+        return f"<Rubric '{self.title}' object id={self.id}>" 
 
 
 

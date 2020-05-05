@@ -14,8 +14,17 @@ class BlueprintView(viewsets.ModelViewSet):
 
 
 class RubricView(viewsets.ModelViewSet):
-    queryset = Rubric.objects.filter(published=True).all()
     serializer_class = RubricSerializer
+
+    def get_queryset(self):
+        # by default get root rubrics (with no parent)
+        queryset = Rubric.objects.filter(published=True, parent=None).all()
+
+        parent_id = self.request.query_params.get('parent', None)
+        if parent_id is not None: # if parent is specified get it's children
+            queryset = Rubric.objects.filter(published=True, parent_id=parent_id).all()
+
+        return queryset
 
 
 

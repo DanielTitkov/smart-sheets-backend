@@ -7,7 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'sheets', SheetView, basename="sheet")
 router.register(r'blueprints', BlueprintView)
 router.register(r'datas', DataView)
-router.register(r'rubrics', RubricView)
+router.register(r'rubrics', RubricView, basename="rubric")
 
 urlpatterns = [
     path('', include(router.urls)),

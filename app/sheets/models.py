@@ -15,6 +15,10 @@ class Rubric(models.Model):
     class Meta:
         app_label = "sheets"
 
+    @property
+    def has_children(self):
+        return Rubric.objects.filter(published=True, parent=self).exists()
+
     def __str__(self):
         return f"<Rubric '{self.title}' object id={self.id}>" 
 

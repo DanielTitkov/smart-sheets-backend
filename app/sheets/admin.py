@@ -13,6 +13,7 @@ class RubricAdmin(admin.ModelAdmin):
         'title',
         'desc',
         'parent',
+        'has_children',
         'published',
         'created',
         'updated',

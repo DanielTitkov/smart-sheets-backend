@@ -14,7 +14,17 @@ class BlueprintSerializer(serializers.ModelSerializer):
 class RubricSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rubric
-        fields = ("__all__")
+        fields = (
+            "id",
+            "title",
+            "desc",
+            "image_url",
+            "published",
+            "created",
+            "updated",
+            "parent",
+            "has_children",
+        )
         depth = 1
 
 

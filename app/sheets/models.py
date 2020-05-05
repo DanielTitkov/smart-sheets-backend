@@ -47,6 +47,7 @@ class Sheet(models.Model):
         return self.blueprint.type
 
 
+
 class Data(models.Model):
     sheet = models.ForeignKey("sheets.Sheet", on_delete=models.CASCADE, related_name="data")
     element_id = models.IntegerField()

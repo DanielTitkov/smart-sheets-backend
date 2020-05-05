@@ -10,8 +10,28 @@ class BlueprintSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class SubRubricSerializer(serializers.ModelSerializer):
+    """This is needed to correctly render has_children field in nested rubrics"""
+    class Meta:
+        model = Rubric
+        fields = (
+            "id",
+            "title",
+            "desc",
+            "image_url",
+            "published",
+            "created",
+            "updated",
+            "parent",
+            "has_children",
+        )
+        depth = 0
+
+
 
 class RubricSerializer(serializers.ModelSerializer):
+    parent = SubRubricSerializer(read_only=True)
+
     class Meta:
         model = Rubric
         fields = (

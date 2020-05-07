@@ -20,7 +20,7 @@ class Rubric(models.Model):
         return Rubric.objects.filter(published=True, parent=self).exists()
 
     def __str__(self):
-        return f"<Rubric '{self.title}' object id={self.id}>" 
+        return f"<Rubric '{self.title}' id={self.id}>" 
 
 
 

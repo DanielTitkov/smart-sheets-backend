@@ -83,9 +83,15 @@ admin.site.register(Rubric, RubricAdmin)
 class BlueprintAdmin(admin.ModelAdmin):
     list_display = (
         '__str__',
+        'rubric',
         'type',
         'published',
         'desc',
     )
+    list_filter = (
+        'rubric',
+        'published',
+    )
+
     form = BlueprintAdminForm
 

@@ -21,6 +21,9 @@ class RubricAdmin(admin.ModelAdmin):
     search_fields = (
         'title',
     )
+    list_filter = (
+        'published',
+    )
 
 
 
@@ -36,6 +39,9 @@ class SheetAdmin(admin.ModelAdmin):
     )
     search_fields = (
         'title',
+    )
+    list_filter = (
+        'deleted',
     )
 
 

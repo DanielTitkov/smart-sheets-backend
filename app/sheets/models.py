@@ -35,7 +35,7 @@ class Sheet(models.Model):
         app_label = "sheets"
         
     def __str__(self):
-        return f"<Sheet object id={self.id}>"
+        return f"<Sheet id={self.id}>"
 
     @property
     def title(self):
@@ -59,7 +59,7 @@ class Data(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return f"<Data object id={self.id}>" 
+        return f"<Data id={self.id}>" 
 
 
 
@@ -78,4 +78,4 @@ class Blueprint(models.Model):
         app_label = "sheets"
 
     def __str__(self):
-        return f"<Blueprint object id={self.id}>" 
+        return f"<Blueprint id={self.id}>" 

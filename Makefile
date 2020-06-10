@@ -53,7 +53,7 @@ devdbup:
 
 .PHONY: dump
 dump:
-	cd $(PROJECT_ROOT) && pipenv run python manage.py dumpdata --indent 4 > ../$(DUMP_FILE_NAME).json
+	cd $(PROJECT_ROOT) && pipenv run python manage.py dumpdata --indent 4 --exclude auth.permission --exclude contenttypes > ../$(DUMP_FILE_NAME).json
 
 .PHONY: load
 load:
